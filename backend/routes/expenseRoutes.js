@@ -1,7 +1,7 @@
 // expenseRoutes.js
 const express = require('express');
 const router = express.Router();
-const { addExpense, getGroupExpenses } = require('../controllers/userController');
+const { addExpense, getGroupExpenses } = require('../controllers/expenseController');
 
 
 // Expense-related routes

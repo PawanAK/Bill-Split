@@ -3,6 +3,9 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 
+const errorHandler = require('./middleware/errorHandler');
+
+
 const userRoutes = require('./routes/userRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
 const groupRoutes = require('./routes/groupRoutes');
@@ -14,6 +17,8 @@ const app = express()
 
 // middleware
 app.use(express.json())
+
+app.use(errorHandler);
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
