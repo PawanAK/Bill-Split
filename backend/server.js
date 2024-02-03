@@ -3,7 +3,9 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 
-const userRoutes = require('./routes/userRoutes')
+const userRoutes = require('./routes/userRoutes');
+const expenseRoutes = require('./routes/expenseRoutes');
+const groupRoutes = require('./routes/groupRoutes');
 
 const PORT = 4000
 
@@ -19,7 +21,9 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRoutes);
+app.use('/api/expense', expenseRoutes);
+app.use('/api/group', groupRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
