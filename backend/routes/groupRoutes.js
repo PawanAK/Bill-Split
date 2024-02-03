@@ -1,11 +1,16 @@
-// groupRoutes.js
+// routes/groupRoutes.js
 const express = require('express');
 const router = express.Router();
+const authenticateUser = require('../middleware/requireAuth');
+const groupController = require('../controllers/groupController');
 
-const { createGroup, getUserGroups } = require('../controllers/groupController');
+// Create a new group (requires authentication)
+router.post('/createGroup', authenticateUser, groupController.createGroup);
 
-// Group-related routes
-router.post('/createGroup', createGroup);
-router.get('/getUserGroups', getUserGroups);
+// Get user's groups (requires authentication)
+router.get('/getUserGroups', authenticateUser, groupController.getUserGroups);
+
+// Invite user to a group (requires authentication)
+router.post('/inviteToGroup/:groupId', authenticateUser, groupController.inviteToGroup);
 
 module.exports = router;
