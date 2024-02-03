@@ -1,14 +1,16 @@
+// models/expenseModel.js
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const expenseSchema = new Schema({
     group: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Group',
         required: true
     },
     user: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
@@ -16,10 +18,21 @@ const expenseSchema = new Schema({
         type: Number,
         required: true
     },
-    description: String,
+    description: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
-        default: Date.now
+        required: true
+    },
+    participants: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    settled: {
+        type: Boolean,
+        default: false
     }
 });
 
